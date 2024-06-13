@@ -11,7 +11,7 @@ const removeCyclicRef = (obj) => {
   const visited = new WeakSet();
 
   const traverseData = (data) => {
-    let result;
+    let result = {}
 
     if (visited.has(data)) {
       return;
@@ -19,7 +19,6 @@ const removeCyclicRef = (obj) => {
 
     if (typeof data === 'object') {
       visited.add(data);
-      result = Array.isArray(data) ? [] : {};
       for (let key in data) {
         const stagedResult = traverseData(data[key]);
         if (stagedResult) {
